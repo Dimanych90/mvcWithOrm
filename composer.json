@@ -1,0 +1,24 @@
+{
+  "autoload": {
+    "psr-4": {
+      "App\\": "App",
+      "Base\\": "Base",
+      "Eloquent\\": "Base/Eloquent"
+    }
+  },
+  "require": {
+    "vlucas/phpdotenv": "^5.2",
+    "wixel/gump": "^1.12",
+    "ext-pdo": "*",
+    "nesbot/carbon": "^2.43",
+    "illuminate/events": "^8.20",
+    "illuminate/filesystem": "^8.20",
+    "symfony/var-dumper": "^5.2",
+    "illuminate/database": "^8.20",
+    "fakerphp/faker": "^1.13",
+    "illuminate/console": "^8.20",
+    "doctrine/dbal": "^3.0",
+    "ext-json": "*",
+    "intervention/image": "^2.5"
+  }
+}

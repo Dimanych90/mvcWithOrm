@@ -1,0 +1,11 @@
+<?php
+/** @var \App\Model\User $users */
+//var_dump($users);
+?>
+
+<?php if (!empty($users)): ?>
+    <?php foreach ($users as $user): ?>
+        <?php echo $user->get('id') ?>.) <img src="<?php echo $user->getImage($user->get('id')) ?>">
+        <?php echo $user->get('name') ?>, <?php echo $user->get('email') ?> <br>
+    <?php endforeach; ?>
+<?php endif; ?>

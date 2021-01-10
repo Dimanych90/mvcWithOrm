@@ -1,0 +1,100 @@
+<?php
+/** @var \App\Model\User $users */
+//var_dump($users);
+/** @var \App\Model\Post $posts */
+//var_dump($posts);
+?>
+
+<?php
+if (!empty($users)):
+    ?>
+    <?php foreach ($users as $user): ?>
+<?php endforeach; ?>
+    <?php $user_id = \Base\Session::getId() ?>
+    <?php $user->findById($user_id) ?>
+    Private Cabinet <img src="<?php echo $user->getImage($user_id) ?> ">
+    <?php echo $user->findById($user_id)['name'] ?>
+
+<?php endif; ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<br>
+<br>
+<form enctype="multipart/form-data" action="../post/sendPost" method="post">
+    Message:<br>
+    <textarea name="message" style="width: 250px; height: 100px;"></textarea><br>
+    Прикрепить картинку:<br>
+    <input name="userfile" type="file"/><br>
+    <input type="submit" value="Send">
+</form>
+</body>
+</html>
+<br>
+<br>
+<br>
+<?php
+if ($posts):
+    ?>
+    <?php
+    foreach ($posts as $post):
+        ?>
+
+        <div class="post">
+            <div class="img"><img src=" <?php echo $user->getImage($post->get('user_id')) ?> ">
+                <div class="user"> <?php echo $user->findById($post->get('user_id'))['name'] ?>
+                    <div class="message">
+                        <?php if (!empty($post->get('filename'))): ?>
+                            <img src=" <?php echo $post->postImage($post->get('filename')) ?> ">
+                        <?php endif; ?>
+                        <?php echo $post->get('message') ?>
+                        <div class="datetime"> <?php echo $post->get('created_at') ?>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <?php endforeach; ?>
+
+<?php endif; ?>
+
+<style>
+    .post {
+        border: 1px solid grey;
+        margin-top: 10px;
+        padding: 5px;
+        width: 250px;
+    }
+
+    .user {
+        color: grey;
+        font-size: 9px;
+    }
+
+    .message {
+        color: black;
+        margin-top: 5px;
+        padding-left: 5px;
+        font-size: 20px;
+    }
+
+    .img {
+        /*width: 2px;*/
+        /*height: 60px;*/
+        /*border: 2px;*/
+        /*text-align: center;*/
+    }
+
+
+    .datetime {
+        color: grey;
+        font-size: 10px;
+    }
+</style>
